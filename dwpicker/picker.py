@@ -219,7 +219,7 @@ class PickerView(QtWidgets.QWidget):
         # and compare the offset after zoom computation.
         if self.zoom_locked:
             return
-        factor = .25 if event.angleDelta().y() > 0 else -.25
+        factor = .25 if (event.angleDelta().x() if event.modifiers() & QtCore.Qt.AltModifier else event.angleDelta().y()) > 0 else -.25
         self.zoom(factor, event.pos())
         self.repaint()
 
